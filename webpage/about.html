@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<!--
+	ZeroFour by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>CSP203-Webpage</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	
+	</head>
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header Wrapper -->
+				<div id="header-wrapper">
+					<div class="container">
+
+						<!-- Header -->
+							<header id="header">
+								<div class="inner">
+
+							<!-- Logo -->
+										<h1><a href="index.html" id="logo">IIT Ropar App</a></h1>
+
+									<!-- Nav -->
+										<nav id="nav">
+											<ul>
+												<li class="current_page_item"><a href="index.html">Home</a></li>
+												<li class="current_page_item"><a href="about.html">About</a></li>								
+                                                <li class="current_page_item"><a href="members.html">Project Members</a></li>
+											</ul>
+										</nav>
+
+								</div>
+							</header>
+
+					</div>
+				</div>
+
+			<!-- Main Wrapper -->
+				<div id="main-wrapper">
+					<div class="wrapper style2">
+						<div class="inner">
+							<div class="container">
+								<div id="content">
+
+									<!-- Content -->
+
+										<article>
+											
+
+											<h3>INTRODUCTION</h3>
+											<p>The overall design is broken into two main features. The description of these are given in the following subsections. </p>
+2.1 Android App<br>
+
+The App has been broken into 4 modules<br>
+
+2.1.1 Profile Management<br>
+
+This module has 3 activities- Login, Register, Update Profile. The test includes following<br>
+
+Figure 1: Login Page<br>
+
+• Create a new user based on type - student, faculty, staff - with an iitrpr email<br>
+
+• Login that User<br>
+
+• Update Profile for User<br>
+
+• Generate Password Reset Link<br>
+
+• Able to store the login info locally on mobile for one-time sign-in support.<br>
+
+2.1.2 Organizer Mode<br>
+
+This module has 2 activities- CRUD a particular event and List all Organised Events.<br>
+
+• Able to create a event and poll.<br>
+
+• Able to update, delete that event.<br>
+
+• Able to convert poll from event.<br>
+
+• Able to list all organised events.<br>
+
+• Able to view count of upcoming participant for an organised events.<br>
+
+2
+
+Figure 2: Create Event Organizer.png<br>
+
+Figure 3: Organizer List<br>
+
+2.1.3 User Mode<br>
+
+This module has 2 activities-<br>
+
+1. List all Events<br>
+
+• Able to list all events.<br>
+
+• Able to sort events based on popularity, newly added, date.<br>
+
+• View event based on category - Cultural, Sports, technical, Academic.<br>
+
+• Listed event all only based on type - public for all and rest visible only to that type - student, faculty, staff<br>
+
+2. CRUD his“entry”<br>
+
+• Able to create his entry - Going, Not-Going, Notify.<br>
+
+• Able to RUD his entry for an event.<br>
+
+• Able to set notification and calender reminder for interested event i.e. (Going + Interested)<br>
+
+2.1.4 Guest Mode<br>
+
+Able to list all public events.<br>
+
+3
+
+Figure 4: List and Sort all Events<br>
+
+Figure 5: Event Details View<br>
+
+Figure 6: Manage Interested Events - User “Entry”<br>
+
+4
+
+2.2 PHP + mySQL<br>
+
+The mySQL databale has 3 table consists<br>
+
+1. Users - Store user profile<br>
+
+2. Events - Store all event related details with organizer id<br>
+
+3. Entry - Store entry for a user-id for an event-id<br>
+
+Now their are php scripts to access and update these data<br>
+
+2.2.1 Login.php<br>
+
+Able to authenticate login for a user-id.<br>
+
+2.2.2 Register.php<br>
+
+Able to register a new user having unique email iitrpr email.<br>
+
+2.2.3 ReadProfile.php<br>
+
+Able to retrieve profile details of user-id.<br>
+
+2.2.4 Update.php<br>
+
+Able to update profile details of user-id.<br>
+
+2.2.5 Password.php<br>
+
+Able to generate forget password link.<br>
+
+2.2.6 List-Event.php<br>
+
+Able to retrieve all organised event info for an event in sql table for a organizer-id, category, type based on user-id.<br>
+
+2.2.7 Read-Event.php<br>
+
+Able to retrieve details for an event in sql table.<br>
+
+2.2.8 Create-Event.php<br>
+
+Able to create new row for an event in sql table for a organizer-id.<br>
+
+2.2.9 Update-Event.php<br>
+
+Able to update info for an event in sql table, organizer-id is correct.<br>
+
+2.2.10 Delete-Event.php<br>
+
+Able to delete info for an event in sql table, organizer-id is correct.<br>
+
+2.2.11 Create-Entry.php<br>
+
+Able to create new Entry in sql table for user-id and event-id.<br>
+
+2.2.12 Read-Entry.php<br>
+
+Able to read an Entry in sql table for user-id and event-id.<br>
+
+2.2.13 Update-Entry.php<br>
+
+Able to update an Entry in sql table for user-id and event-id.<br>
+
+2.2.14 Delete-Entry.php<br>
+
+Able to delete an Entry in sql table for user-id and event-id.<br>
+										</article>
+
+								</div>
+							</div>
+						</div>
+					</div>
+		
+				</div>
+
+			
+
+		</div>
+
+		<!-- Scripts -->
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/skel-viewport.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
