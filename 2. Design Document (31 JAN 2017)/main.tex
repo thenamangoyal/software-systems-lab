@@ -1,0 +1,363 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepgflibrary{arrows}
+\usetikzlibrary{svg.path}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\title{CSP203: Project's Design Document}
+\author{Naman Goyal (2015CSB1021) \\
+Sarthak Gupta (2015CSB1029) \\
+Vishal Singh (2015CSB1040) \\
+Nittin Singh (2015CSB1067)
+}
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\vspace{1cm}
+\Large{CSP203 - Software Systems Lab}
+\vfill
+
+\line(1,0){400}\\[1mm]
+\huge{\textbf{Project's Design Document\\IIT Ropar App}}\\
+\large{(Version: 1.0)}\\
+\line(1,0){400}\\
+\vfill
+\Large{Naman Goyal (2015CSB1021) \\
+Sarthak Gupta (2015CSB1029) \\
+Vishal Singh (2015CSB1040) \\
+Nittin Singh (2015CSB1067)
+}\\
+
+\vfill
+\large{January 31, 2017}\\
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+\usetikzlibrary{positioning,shapes,shadows,arrows}
+\definecolor{mycolor}{RGB}{220,150,0}
+\definecolor{my2color}{RGB}{150,150,150}
+\definecolor{my3color}{RGB}{0,170,220}
+
+\newpage
+\section{Introduction}
+
+\subsection{Objective}
+\par To ease students' stay at IIT Ropar, \\
+and provide one click access to all relevant updates at the institute.
+\subsection{Features}
+\par Know about ongoing events, conferences, talks, seminars - Cultural, Academic, Sports, etc.
+\begin{itemize}
+\item[$\bullet$] Add a new events
+
+\item[$\bullet$] Moderate Existing events
+
+\item[$\bullet$] Add Reviews
+
+\item[$\bullet$] Suggest events based on your interest
+
+\item[$\bullet$] Exchange books, lab coats and other stuffs in organised model
+
+\item[$\bullet$] Exchange old Question Papers and serves as Question bank\\
+
+FAQs section about
+
+\item[$\bullet$] The “hacks” at Ropar
+
+\item[$\bullet$] Academics in terms of courses/ Instructors
+
+\item[$\bullet$] Re-alive the Wiki of IIT Ropar
+
+\item[$\bullet$] Raise issues directly to corresponding Representatives of Mess, Sports, Hostel
+
+\end{itemize}
+
+\section{Functional Description}
+\par  The overall design of the App is broken into two main features. The description of\\
+these are given in the following subsections:
+\subsection{ News Sharing }
+
+\par Everyone can suggest news(relevant to the college or worth sharing) to the admin.\\
+Its the duty of admin to publish weekly newspaper for the entire college.\\
+
+IIT Ropar app will contain certain options. One such option is "News Share".This\\ 
+option will lead to further options, as shown:\\
+\tikzstyle{options}=[rectangle, draw=black, rounded corners, fill=mycolor, drop shadow, text centered, anchor=north, text=white, text width=3cm]
+\tikzstyle{description}=[rectangle, draw=black, rounded corners, fill=my2color, drop shadow,text centered, anchor=north, text=white, text width=3cm]
+\tikzstyle{myarrow}=[->, >=open triangle 90, thick]
+\tikzstyle{line}=[-, thick]
+\linebreak
+\subsubsection{First Step}
+\begin{center}
+
+\begin{tikzpicture}[node distance=2cm,thick]
+    \node (News-Share) [options,anchor=center]
+        {
+            \textbf{News Share}
+        };
+    \node(Details)[description,text width=5cm, right=of News-Share]{
+     \textbf{Click on this ~option this will lead to further sub-options}
+     };
+    \node (sub-options) [options, text width=4cm, below=of News-Share,rectangle split,rectangle split parts=3] { 
+            \textbf{College Weekly}
+            \nodepart{second}\textbf{Your Group paper}
+            \nodepart{third}\textbf{Create Your Group}
+      };
+    \draw[black, -latex] (News-Share) -- (Details);
+    \draw[black, -latex] (News-Share) -- (sub-options);
+   
+\end{tikzpicture}
+\end{center}
+\subsubsection{College Weekly}
+\begin{center}
+\begin{tikzpicture}[node distance=2cm,thick]
+    \node (College Weekly) [options,anchor=center]
+        {
+            \textbf{College Weekly}
+        };
+    \node(Details)[description,text width=5cm, right=of News-Share]{
+     \textbf{Click on this option this will lead to further sub-options}
+     };
+     
+    \node (sub-options) [options, fill=my3color,text width=4cm, below=of College Weekly,rectangle split,rectangle split parts=3] { 
+            \textbf{View Weekly}
+            \nodepart{second}\textbf{Suggest News}
+            \nodepart{third}\textbf{Add Review}
+      };
+      \node(Details1)[description,text width=5cm, right=of sub-options]{
+     \textbf{"View Weekly" \\
+      It will show the weekly news-collection}
+     };
+     \node(Details2)[description,text width=5cm, below=of Details1]{
+     \textbf{"Suggest News"\\
+     It will allow the user to recommend news to the admin.}
+     };
+     \node(Details3)[description,text width=5cm, below=of Details2]{
+     \textbf{Allows the user to add review about any particular news.
+     These reviews are visible to everyone.}
+     };
+    \draw[black, -latex] (College Weekly) -- (Details);
+    \draw[black, -latex] (College Weekly) -- (sub-options);
+    \draw[black, -latex] (sub-options) -- (Details1);
+    \draw[black, thick, -latex](sub-options) -- (Details1);
+    \draw[black, thick, -latex](sub-options) -- (Details2);
+    \draw[black, thick, -latex](sub-options) -- (Details3);
+    
+\end{tikzpicture}
+\end{center}
+\clearpage
+\subsubsection{Your Group paper}
+\begin{center}
+  \begin{tikzpicture}[node distance=2cm,thick]
+    \node (Group) [options,anchor=center]
+        {
+            \textbf{Your Group paper}
+        };
+    \node (sub-options) [options, fill=my3color,text width=4cm, below=of College Weekly,rectangle split,rectangle split parts=3] { 
+            \textbf{View Group Weekly}
+            \nodepart{second}\textbf{Suggest News}
+            \nodepart{third}\textbf{Add Review}
+        };
+     \node(Details1)[description,text width=5cm, right=of sub-options]{
+     \textbf{The options and functions are somewhat similar to that of the weekly paper.}
+     };
+    \node(Details)[description,text width=5cm, right=of News-Share]{
+     \textbf{Click on this ~option this will lead further to the groups that you are member of, and it will display the weekly shared by the group admins.}
+     };
+    \draw[black, -latex] (Group) -- (Details);
+    \draw[black, -latex] (Group) -- (sub-options);
+    \draw[black, -latex] (sub-options) -- (Details1);
+ \end{tikzpicture}
+ \end{center}
+\subsubsection{Create Your Group}
+\begin{center}
+  \begin{tikzpicture}[node distance=2cm,thick]
+    \node (create) [options,anchor=center]
+        {
+            \textbf{Create New Group}
+        };
+        
+    \node(Details)[description,text width=5cm, right=of News-Share]{
+     \textbf{This will help new members to form new groups and decide their own admin. For example: if professors want to share some information with their students then they can form their own groups and share.  }
+     };
+    \draw[black, -latex] (Group) -- (Details);
+   
+\end{tikzpicture}
+\end{center}
+\newpage
+\subsection{ Event Management }
+
+\par This section of the app will allow admin to post the details of different events\\
+(Sports, IBCC, Tech fest, Cultural fest etc.) and also keep the track of the previous\\ events. This will ensure that the events in the college are organised smoothly.\\
+
+IIT Ropar app will contain certain options. One such option is "Event Management".This\\ 
+option will lead to further options, as shown:\\
+\tikzstyle{options}=[rectangle, draw=black, rounded corners, fill=mycolor, drop shadow, text centered, anchor=north, text=white, text width=3cm]
+\tikzstyle{description}=[rectangle, draw=black, rounded corners, fill=my2color, drop shadow,text centered, anchor=north, text=white, text width=3cm]
+\tikzstyle{myarrow}=[->, >=open triangle 90, thick]
+\tikzstyle{line}=[-, thick]
+\linebreak
+\subsubsection{First Step}
+\begin{center}
+\begin{tikzpicture}[node distance=2cm,thick]
+    \node (Types-of-options) [options,anchor=center]
+        {
+            \textbf{Types of Events}
+        };
+    \node(Details)[description,text width=5cm, right=of Types-of-options]{
+     \textbf{Click on this ~option to different types of events such as IBCC, Samagam, Conferences etc.}
+     };
+    \node (sub-options) [options, text width=4cm, below=of Types-of-options,rectangle split,rectangle split parts=3] { 
+            \textbf{Conferences}
+            \nodepart{second}\textbf{Talks}
+            \nodepart{third}\textbf{Cultural/Technical/\\Sports}
+      };
+    \draw[black, -latex] (Types-of-options) -- (Details);
+    \draw[black, -latex] (Types-of-options) -- (sub-options);
+   
+\end{tikzpicture}
+\end{center}
+\subsubsection{Conferences}
+\begin{center}
+\begin{tikzpicture}[node distance=2cm,thick]
+    \node (Conference) [options,anchor=center]
+        {
+            \textbf{Conference}
+        };
+    \node(Details)[description,text width=5cm, right=of Conference]{
+     \textbf{Click on this option and it will take to an activity where details of past and upcoming conferences can be found }
+     };
+     
+    \node (sub-options) [options, fill=my3color,text width=4cm, below=of Conference,rectangle split,rectangle split parts=3] { 
+            \textbf{Past Conferences}
+            \nodepart{second}\textbf{Upcoming Conferences}
+            \nodepart{third}\textbf{Add Review/Comments}
+      };
+      \node(Details1)[description,text width=5cm, right=of sub-options]{
+     \textbf{"Past Conferences" \\
+      It will show the reviews, topics and photos of past conferences}
+     };
+     \node(Details2)[description,text width=5cm, below=of Details1]{
+     \textbf{"Upcoming Conferences"\\
+     It will show the topics, resources about the upcoming conferences.}
+     };
+     \node(Details3)[description,text width=5cm, below=of Details2]{
+     \textbf{"Add Review/Commentss"\\
+     It will allow the users to add comments regarding the conferences.}
+     };
+    \draw[black, -latex] (Conference) -- (Details);
+    \draw[black, -latex] (Conference) -- (sub-options);
+    \draw[black, -latex] (sub-options) -- (Details1);
+    \draw[black, thick, -latex](sub-options) -- (Details1);
+    \draw[black, thick, -latex](sub-options) -- (Details2);
+    \draw[black, thick, -latex](sub-options) -- (Details3);
+    
+\end{tikzpicture}
+\end{center}
+
+\clearpage
+\subsubsection{Talks}
+\begin{center}
+\begin{tikzpicture}[node distance=2cm,thick]
+    \node (Talk) [options,anchor=center]
+        {
+            \textbf{Talks}
+        };
+    \node(Details)[description,text width=5cm, right=of Conference]{
+     \textbf{Click on this option and it will take to an activity where details of past and upcoming Talks by renowned personality can be found }
+     };
+     
+    \node (sub-options) [options, fill=my3color,text width=4cm, below=of Talk,rectangle split,rectangle split parts=3] { 
+            \textbf{Past Talks}
+            \nodepart{second}\textbf{Upcoming Talks}
+            \nodepart{third}\textbf{Add Review/Comments}
+      };
+      \node(Details1)[description,text width=5cm, right=of sub-options]{
+     \textbf{"Past Conferences" \\
+      It will show the speaker, topics and photos of past talks}
+     };
+     \node(Details2)[description,text width=5cm, below=of Details1]{
+     \textbf{"Upcoming Conferences"\\
+     It will show the speaker, topics, resources about the upcoming talks.}
+     };
+     \node(Details3)[description,text width=5cm, below=of Details2]{
+     \textbf{"Add Review/Commentss"\\
+     It will allow the users to add comments regarding the talks.}
+     };
+    \draw[black, -latex] (Talk) -- (Details);
+    \draw[black, -latex] (Talk) -- (sub-options);
+    \draw[black, -latex] (sub-options) -- (Details1);
+    \draw[black, thick, -latex](sub-options) -- (Details1);
+    \draw[black, thick, -latex](sub-options) -- (Details2);
+    \draw[black, thick, -latex](sub-options) -- (Details3);
+    
+\end{tikzpicture}
+\end{center}
+\clearpage
+\subsubsection{Cultural/Technical/Sports}
+\begin{center}
+\begin{tikzpicture}[node distance=2cm,thick]
+    \node (insideevents) [options,anchor=center]
+        {
+            \textbf{Cultural/Techni\\cal/Sports}
+        };
+    \node(Details)[description,text width=5cm, right=of insideevents]{
+     \textbf{Click on this option and it will take to an activity where details of the college's fest can be found}
+     };
+     
+    \node (sub-options) [options, fill=my3color,text width=4cm, below=of insideevents,rectangle split,rectangle split parts=3] { 
+            \textbf{Cultural}
+            \nodepart{second}\textbf{Technical}
+            \nodepart{third}\textbf{Sports}
+      };
+      \node(Details1)[description,text width=5cm, right=of sub-options]{
+     \textbf{"Cultural" \\
+      It will show the details about Zeitgeist, IBCC, Samagam etc.}
+     };
+     \node(Details2)[description,text width=5cm, below=of Details1]{
+     \textbf{"Technical"\\
+     It will show the details about Advitiya, Quintessence etc.}
+     };
+     \node(Details3)[description,text width=5cm, below=of Details2]{
+     \textbf{"Sports"\\
+     It will show the details about the sports events in the college.}
+     };
+    \draw[black, -latex] (insideevents) -- (Details);
+    \draw[black, -latex] (insideevents) -- (sub-options);
+    \draw[black, -latex] (sub-options) -- (Details1);
+    \draw[black, thick, -latex](sub-options) -- (Details1);
+    \draw[black, thick, -latex](sub-options) -- (Details2);
+    \draw[black, thick, -latex](sub-options) -- (Details3);
+    
+\end{tikzpicture}
+\end{center}
+
+\newpage
+\section{Target Audience}
+\par Who are the end users of this project and How do you think the project will be used by them. There may be several use models or scenarios in which the proposed project will be used. If there are many use models, describe atleast few of them.\\
+Students as well as the faculty at IIT ROPAR is the prime target for this app. As a relevant and organised source of information regarding the ongoing or forecoming events at the college.
+
+\section{Timeline}
+\par Currently following are the milestones and the proposed deadlines for making the IIT Ropar App.\\
+As we move further, we would be adding more.\\
+\begin{center}
+\begin{tabular}{ |c|c| } 
+\hline
+\textbf{Milestone} & \textbf{Proposed Deadline}\\ 
+\hline
+ Android App(with front page and main activity linked to other activities) & February 12, 2017 \\ 
+\hline
+Database management in App & Not yet decided \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\end{document}
