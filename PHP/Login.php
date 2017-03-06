@@ -14,7 +14,8 @@
     
     while(mysqli_stmt_fetch($statement)){
         if (password_verify($password, $colPassword)) {
-            $response["success"] = true;  
+            $response["success"] = true;
+            $response["user_id"] = $colUserID;
             $response["name"] = $colName;
             $response["age"] = $colAge;
         }

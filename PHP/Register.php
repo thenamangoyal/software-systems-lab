@@ -9,8 +9,12 @@
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $statement = mysqli_prepare($connect, "INSERT INTO users (name, username, age, password) VALUES (?, ?, ?, ?)");
         mysqli_stmt_bind_param($statement, "ssis", $name, $username, $age, $passwordHash);
-        mysqli_stmt_execute($statement);
+        if (mysqli_stmt_execute($statement)){
+            mysqli_stmt_close($statement);
+            return true;
+        }
         mysqli_stmt_close($statement);
+        return false;
     }
     function usernameAvailable() {
         global $connect, $username;
@@ -29,8 +33,9 @@
     $response = array();
     $response["success"] = false;  
     if (usernameAvailable()){
-        registerUser();
-        $response["success"] = true;  
+        if(registerUser()){
+            $response["success"] = true;
+        }
     }
     
     echo json_encode($response);
