@@ -1,25 +1,36 @@
 <?php
     require_once('connect.php');
-    $name = $_POST["name"];
-    $age = $_POST["age"];
-    $username = $_POST["username"];
+    $name = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $usertype_id = trim($_POST["usertype_id"]);
     $password = $_POST["password"];
+
     function registerUser() {
-        global $connect, $name, $age, $username, $password;
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $statement = mysqli_prepare($connect, "INSERT INTO users (name, username, age, password) VALUES (?, ?, ?, ?)");
-        mysqli_stmt_bind_param($statement, "ssis", $name, $username, $age, $passwordHash);
-        if (mysqli_stmt_execute($statement)){
-            mysqli_stmt_close($statement);
-            return true;
+        global $connect, $name, $email, $usertype_id, $password;
+        $allowed = array('iitrpr.ac.in');
+        // Make sure the address is valid
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($password) >= 8){
+            
+            $explodedEmail = explode('@', $email);
+            $domain = array_pop($explodedEmail);
+
+            if (in_array($domain, $allowed)){
+                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                $statement = mysqli_prepare($connect, "INSERT INTO user (name, email, password, usertype_id) VALUES (?, ?, ?, ?)");
+                mysqli_stmt_bind_param($statement, "sssi", $name, $email, $passwordHash, $usertype_id);
+                if (mysqli_stmt_execute($statement)){
+                    mysqli_stmt_close($statement);
+                    return true;
+                }
+                mysqli_stmt_close($statement);
+            }
         }
-        mysqli_stmt_close($statement);
         return false;
     }
-    function usernameAvailable() {
-        global $connect, $username;
-        $statement = mysqli_prepare($connect, "SELECT * FROM users WHERE username = ?"); 
-        mysqli_stmt_bind_param($statement, "s", $username);
+    function emailAvailable() {
+        global $connect, $email;
+        $statement = mysqli_prepare($connect, "SELECT * FROM user WHERE email = ?"); 
+        mysqli_stmt_bind_param($statement, "s", $email);
         mysqli_stmt_execute($statement);
         mysqli_stmt_store_result($statement);
         $count = mysqli_stmt_num_rows($statement);
@@ -32,7 +43,7 @@
     }
     $response = array();
     $response["success"] = false;  
-    if (usernameAvailable()){
+    if (emailAvailable()){
         if(registerUser()){
             $response["success"] = true;
         }

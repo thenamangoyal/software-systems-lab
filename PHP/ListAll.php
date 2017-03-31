@@ -1,7 +1,21 @@
 <?php
     require_once('connect.php');
 
-    $statement = "SELECT * FROM events";
+    $user_condition = "";
+    if (isset($_GET["usertype_id"])){
+    	$use = $_GET["usertype_id"];
+    	$user_condition = " AND (usertype_id= '$use' OR usertype_id='0')";
+    }
+    else{
+    	$user_condition = " AND usertype_id='0'";
+    }
+
+    $category_condition ="";
+    if (isset($_GET["category_id"])){
+    	$cat = $_GET["category_id"];
+    	$category_condition = " AND category_id='$cat'";
+    }
+    $statement = "SELECT * FROM events WHERE `time`>= NOW()" . $user_condition . $category_condition . "  ORDER BY time DESC ;";
     $res = mysqli_query($connect,$statement);
     $result = array();
     if (mysqli_num_rows($res) > 0) {
