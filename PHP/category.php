@@ -7,9 +7,15 @@
 		$res = mysqli_query($connect, $sql);
 		
 		if (mysqli_num_rows($res) == 1) {
-		  	$row = mysqli_fetch_array($res, MYSQLI_ASSOC);
-	       	$response["category_id"] = $row['category_id'];
-	       	$response["name"] = $row['name'];
+	    	$result = array();
+		    is($row = mysqli_fetch_array($res, MYSQLI_ASSOC)) {
+		    	array_push($result,
+				array('category_id'=>$row['category_id'],
+				'name'=>$row['name']
+				));
+			       
+			    }
+			$response["category"] = $result;
 		    $response["success"] = true;
 		}
 		else{
