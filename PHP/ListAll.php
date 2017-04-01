@@ -2,7 +2,7 @@
     require_once('connect.php');
 
     $user_condition = "";
-    if (isset($_GET["usertype_id"])){
+    if (isset($_GET["usertype_id"]) && trim($_GET["usertype_id"]) != ""){
     	$use = $_GET["usertype_id"];
     	$user_condition = " AND (usertype_id= '$use' OR usertype_id='0')";
     }
@@ -11,11 +11,11 @@
     }
 
     $category_condition ="";
-    if (isset($_GET["category_id"])){
+    if (isset($_GET["category_id"]) && trim($_GET["category_id"]) != ""){
     	$cat = $_GET["category_id"];
     	$category_condition = " AND category_id='$cat'";
     }
-    $statement = "SELECT * FROM events WHERE `time`>= NOW()" . $user_condition . $category_condition . "  ORDER BY time DESC ;";
+    $statement = "SELECT * FROM events WHERE `time`>= NOW()" . $user_condition . $category_condition . " ORDER BY time DESC ;";
     $res = mysqli_query($connect,$statement);
     $result = array();
     if (mysqli_num_rows($res) > 0) {
