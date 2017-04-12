@@ -2,7 +2,6 @@
     require_once('connect.php');
     $email = trim($_POST["email"]);
     $password = $_POST["password"];
-
     
     $response = array();
     $response["success"] = false;

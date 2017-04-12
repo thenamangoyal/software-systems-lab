@@ -1,5 +1,9 @@
 <?php
     require_once('connect.php');
+     $response = array();
+    $response["success"] = false;  
+
+    if (isset($_POST["name"]) && trim($_POST["name"]) != "" && isset($_POST["email"]) && trim($_POST["email"]) != "" && isset($_POST["usertype_id"]) && trim($_POST["usertype_id"]) != "" && isset($_POST["password"]) && $_POST["password"] != ""){
     $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
     $usertype_id = trim($_POST["usertype_id"]);
@@ -41,14 +45,17 @@
             return false; 
         }
     }
-    $response = array();
-    $response["success"] = false;  
-    if (emailAvailable()){
+     if (emailAvailable()){
         if(registerUser()){
             $response["success"] = true;
         }
     }
+}
+   
+
+   
     
     echo json_encode($response);
     mysqli_close($connect);
+    $_POST = array();
 ?>
