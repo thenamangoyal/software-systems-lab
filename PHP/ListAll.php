@@ -2,8 +2,8 @@
     require_once('connect.php');
 
     $user_condition = "";
-    if (isset($_GET["usertype_id"]) && trim($_GET["usertype_id"]) != ""){
-    	$use = $_GET["usertype_id"];
+    if (isset($_POST["usertype_id"]) && trim($_POST["usertype_id"]) != ""){
+    	$use = $_POST["usertype_id"];
     	$user_condition = " AND (usertype_id= '$use' OR usertype_id='0')";
     }
     else{
@@ -11,22 +11,23 @@
     }
 
     $category_condition ="";
-    if (isset($_GET["category_id"]) && trim($_GET["category_id"]) != ""){
-    	$cat = $_GET["category_id"];
-    	$category_condition = " AND category_id='$cat'";
+    if (isset($_POST["category_id"]) && trim($_POST["category_id"]) != ""){
+    	$cat = $_POST["category_id"];
+        if ($cat != 0){
+            $category_condition = " AND category_id='$cat'";
+        }    	
     }
-    $statement = "SELECT * FROM events WHERE `time`>= NOW()" . $user_condition . $category_condition . " ORDER BY time DESC ;";
+
+    $limit = 0;
+    if (isset($_POST["limit"])){
+        $limit = $_POST["limit"];
+    }
+    $statement = "SELECT * FROM events WHERE `time`>= NOW()" . $user_condition . $category_condition . " ORDER BY time DESC LIMIT 10 OFFSET " . 10*$limit;
     $res = mysqli_query($connect,$statement);
     $result = array();
     if (mysqli_num_rows($res) > 0) {
 	    while ($row = mysqli_fetch_array($res)) {
-	    	array_push($result,
-			array('event_id'=>$row['event_id'],
-			'name'=>$row['name'],
-			'time'=>$row['time'],
-			'venue'=>$row['venue'],
-			'details'=>$row['details']
-			));
+	    	$result[] = $row;
 	    }
 	    echo json_encode(array("events"=>$result, "success"=>true));
 	}
