@@ -29,6 +29,21 @@
                     $response["user_id"] = $colUserID;
                     $response["email"] = $colEmail;
                     $response["usertype_id"] = $colUserType;
+                    $usertype_sql = "SELECT * FROM usertype WHERE usertype_id = '$colUserType'";
+                    $usertype_res = mysqli_query($connect, $usertype_sql);
+                    
+                    if (mysqli_num_rows($usertype_res) == 1) {
+                        if($row = mysqli_fetch_array($usertype_res, MYSQLI_ASSOC)) {
+                            $usertype_sql = "SELECT * FROM usertype WHERE usertype_id = '$colUserType'";
+                            $usertype_res = mysqli_query($connect, $usertype_sql);
+                            
+                            if (mysqli_num_rows($usertype_res) == 1) {
+                                if($usertype_row = mysqli_fetch_array($usertype_res, MYSQLI_ASSOC)) {
+                                    $response["usertype"] = $usertype_row["name"];
+                                }
+                            }
+                        }
+                    }
                     $response["created"] = $colCreated;
                     $response["name"] = $colName;
 
