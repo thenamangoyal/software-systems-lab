@@ -32,6 +32,8 @@
                             'time'=>$event_row['time'],
                             'venue'=>$event_row['venue'],
                             'details'=>$event_row['details'],
+                            'usertype_id'=>$event_row['usertype_id'],
+                            'user_id'=>$event_row['user_id'],
                             'category_id'=>$event_row['category_id']
                             ));
                         }
