@@ -13,31 +13,16 @@
 	    $venue = trim($_POST["venue"]);
 	    $eventtime = trim($_POST["time"]);
 	    $details = trim($_POST["details"]);
+		$statement = mysqli_prepare($connect, "INSERT INTO events (name, user_id, category_id, usertype_id, venue, time, details) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		mysqli_stmt_bind_param($statement, "siiisss", $event_name, $user_id, $category_id, $usertype_id, $venue ,$eventtime, $details);
+		if (mysqli_stmt_execute($statement)){
+		    mysqli_stmt_close($statement);
+		    $response["success"] = true;
+		    $event_id =  mysqli_insert_id($connect);
+		    exec('php notifyevent.php '. $details . ' '. $event_name . ' ' . $event_id . ' > /dev/null 2>/dev/null &');
+		}
+		mysqli_stmt_close($statement);
 	    
-	    
-	    
-	    function registerEvent() {
-	        global $connect, $event_name, $user_id, $category_id, $usertype_id, $venue, $eventtime, $details;
-
-	        $statement = mysqli_prepare($connect, "INSERT INTO events (name, user_id, category_id, usertype_id, venue, time, details) VALUES (?, ?, ?, ?, ?, ?, ?)");
-	        mysqli_stmt_bind_param($statement, "siiisss", $event_name, $user_id, $category_id, $usertype_id, $venue ,$eventtime, $details);
-	        if (mysqli_stmt_execute($statement)){
-	            mysqli_stmt_close($statement);
-	            return true;
-	        }
-	        mysqli_stmt_close($statement);
-	        return false;
-	        
-	    }
-	    function eventAvailable() {
-	        return true;
-	    }
-	    
-	    if (eventAvailable()){
-	        if(registerEvent()){
-	            $response["success"] = true;    
-	        }          
-	    }
     }
     echo json_encode($response);
     mysqli_close($connect);
