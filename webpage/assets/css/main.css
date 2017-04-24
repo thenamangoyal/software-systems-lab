@@ -1,11 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,800");
 @import url("font-awesome.min.css");
 
-/*
-	ZeroFour by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 /* Reset */
 
@@ -17,6 +12,37 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
+
+	.button:hover .top {
+  margin: -80px 0 0 10px;
+  line-height: 20px;
+}
+
+.button:hover .bottom {
+  margin: 10px 0 0 10px;
+}
+	/*Adjust Gradient*/
+.button a:active {
+background: #00b7ea; /* Old browsers */
+background: -moz-linear-gradient(top,  #00b7ea 36%, #009ec3 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(36%,#00b7ea), color-stop(100%,#009ec3)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #00b7ea 36%,#009ec3 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #00b7ea 36%,#009ec3 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #00b7ea 36%,#009ec3 100%); /* IE10+ */
+background: linear-gradient(top,  #00b7ea 36%,#009ec3 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=0 ); /* IE6-9 */
+
+}
+
+/*Pulls in Wings*/
+.button:active .bottom {
+  margin: -20px 0 0 10px;
+}
+
+.button:active .top {
+  margin: -70px 0 0 10px;
+}
+
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
@@ -1106,8 +1132,7 @@
 		}
 
 	h1, h2, h3, h4, h5, h6 {
-		text-transform: uppercase;
-		font-weight: 800;
+		font-weight: 500;
 		letter-spacing: 0.04em;
 		color: #404248;
 		margin: 0 0 1em 0;
@@ -1676,8 +1701,8 @@
 			border-right: 0;
 			color: #fff;
 			color: rgba(255, 255, 255, 0.75);
-			font-size: 2.35em;
-			font-weight: 700;
+			font-size: 2em;
+			font-weight: 500;
 			line-height: 1.3em;
 			margin: 0 0 1.5em 0;
 		}
