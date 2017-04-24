@@ -1,5 +1,8 @@
 <?php
     require_once('connect.php');
+    $response = array();
+    $response["success"] = false;
+    $result = array();
     if (isset($_POST["user_id"]) && trim($_POST["user_id"]) != ""){
         $user_id = trim($_POST["user_id"]);
     $limit = 0;
@@ -9,7 +12,6 @@
         
         $bookmark_statement = "SELECT * FROM bookmarks WHERE (user_id = '$user_id'  AND active = 1) ORDER BY updated DESC LIMIT 10 OFFSET " . 10*$limit;
         $bookmark_res = mysqli_query($connect,$bookmark_statement);
-        $result = array();
         if (mysqli_num_rows($bookmark_res) > 0) {
             
             $category_statement = "SELECT * FROM category;";

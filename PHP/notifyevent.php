@@ -1,21 +1,13 @@
 <?php
 // API access key from Google API's Console
 define( 'API_ACCESS_KEY', 'AAAA1Db7cpQ:APA91bFDboy15v176Tr04_uNgrOYLqLcUzt2fYPTj6JlNCMnTxMIB2qfgMRaKiL9d8STvLqjWCvOBoWP_I7VLNo-GRqCyD6Hhoo3gJWgwCajU6TSTBtWS2A5RC2hjqvh0Ze6gbvg5Xis' );
-
-if ($argc >= 4){
-				$msg = array
-				(
-					'body' 	=> $argv[1],
-					'title'		=> $argv[2],
-					'event_id'  => $argv[3],
-					'vibrate'	=> 1,
-					'sound'		=> 1
-				);
-				$fields = array
-				(
-					'to' 	=> '/topics/0',
-					'data'			=> $msg
-				);
+if ($argc >= 1){
+				
+	$fields = array
+	(
+		'to'	=> '/topics/0',
+		'data'	=> unserialize($argv[1])
+	);
 
 	// $headers = array
 	// (

@@ -17,11 +17,62 @@
 		mysqli_stmt_bind_param($statement, "siiisss", $event_name, $user_id, $category_id, $usertype_id, $venue ,$eventtime, $details);
 		if (mysqli_stmt_execute($statement)){
 		    mysqli_stmt_close($statement);
-		    $response["success"] = true;
 		    $event_id =  mysqli_insert_id($connect);
-		    exec('php notifyevent.php "'. $details . '" "'. $event_name . '" "' . $event_id . '" > /dev/null 2>/dev/null &');
+		    $event_statement = "SELECT * FROM events WHERE event_id = '$event_id';";
+	        $event_res = mysqli_query($connect,$event_statement);
+	        if (mysqli_num_rows($event_res) ==1) {
+	        	$category_statement = "SELECT * FROM category;";
+		        $category_res = mysqli_query($connect,$category_statement);
+		        $category_list = array();
+		        while ($category_row = mysqli_fetch_array($category_res)) {
+		            $category_list[$category_row['category_id']] = $category_row['name'];
+		        }
+
+		        $usertype_statement = "SELECT * FROM usertype;";
+		        $usertype_res = mysqli_query($connect,$usertype_statement);
+		        $usertype_list = array();
+		        while ($usertype_row = mysqli_fetch_array($usertype_res)) {
+		            $usertype_list[$usertype_row['usertype_id']] = $usertype_row['name'];
+		        }
+
+		        while ($row = mysqli_fetch_array($event_res)) {
+		            $user_id = $row['user_id'];
+		            $user_statement = "SELECT * FROM user WHERE user_id = '$user_id';";
+		            $user_res = mysqli_query($connect,$user_statement);
+		            if ($user_row = mysqli_fetch_array($user_res)) {
+
+	        			$response["success"] = true;
+		                
+		                $msg = array
+							(
+								'body' 	=> $row['venue'] . ' - ' . $row['time'],
+								'title'		=> "New event " . $row['name'],
+								'event_id'=>$row['event_id'],
+								'name'=>$row['name'],
+				                'time'=>$row['time'],
+				                'venue'=>$row['venue'],
+				                'details'=>$row['details'],
+				                'usertype_id'=>$row['usertype_id'],
+				                'usertype'=>$usertype_list[$row['usertype_id']],
+				                'creator_id'=>$row['user_id'],
+				                'creator'=>$user_row['name'],
+				                'category_id'=>$row['category_id'],
+				                'category'=>$category_list[$row['category_id']],
+								'vibrate'	=> 1,
+								'sound'		=> 1
+							);
+					    exec('php notifyevent.php '. escapeshellarg(serialize($msg)) .' > /dev/null 2>/dev/null &');
+		            }
+		        }
+	        }
+		    
+		    
+
+		    
 		}
-		mysqli_stmt_close($statement);
+		else {
+			mysqli_stmt_close($statement);
+		}
 	    
     }
     echo json_encode($response);

@@ -13,19 +13,12 @@
         $user_condition = " AND usertype_id='0'";
     }
 
-    $category_condition ="";
-    if (isset($_POST["category_id"]) && trim($_POST["category_id"]) != ""){
-        $cat = $_POST["category_id"];
-        if ($cat != 0){
-            $category_condition = " AND category_id='$cat'";
-        }       
-    }
 
     $limit = 0;
     if (isset($_POST["limit"])){
         $limit = $_POST["limit"];
     }
-    $statement = "SELECT * FROM events WHERE `time`>= NOW()" . $user_condition . $category_condition . " ORDER BY time DESC LIMIT 10 OFFSET " . 10*$limit;
+    $statement = "SELECT * FROM events WHERE `time` < NOW()" . $user_condition . " ORDER BY time DESC LIMIT 10 OFFSET " . 10*$limit;
     $res = mysqli_query($connect,$statement);
     if (mysqli_num_rows($res) > 0) {
         $category_statement = "SELECT * FROM category;";
@@ -62,7 +55,7 @@
                 'category'=>$category_list[$row['category_id']]
                 ));
             }
-        }
+        }        
     }
     if (count($result) > 0){
        $response["events"] = $result;
