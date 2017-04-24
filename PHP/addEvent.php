@@ -19,7 +19,7 @@
 		    mysqli_stmt_close($statement);
 		    $response["success"] = true;
 		    $event_id =  mysqli_insert_id($connect);
-		    exec('php notifyevent.php '. $details . ' '. $event_name . ' ' . $event_id . ' > /dev/null 2>/dev/null &');
+		    exec('php notifyevent.php "'. $details . '" "'. $event_name . '" "' . $event_id . '" > /dev/null 2>/dev/null &');
 		}
 		mysqli_stmt_close($statement);
 	    
