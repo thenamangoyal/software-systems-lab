@@ -42,11 +42,13 @@
 		            if ($user_row = mysqli_fetch_array($user_res)) {
 
 	        			$response["success"] = true;
+	        			$dt = new DateTime($row['time']);
+			            $newdate = $dt->format('d M h:i A');
 		                
 		                $msg = array
 							(
-								'body' 	=> $row['venue'] . ' - ' . $row['time'],
-								'title'		=> "New event " . $row['name'],
+								'body' 	=> $row['venue'] . ' - ' . $newdate,
+								'title'		=> "New Event: " . $row['name'],
 								'event_id'=>$row['event_id'],
 								'name'=>$row['name'],
 				                'time'=>$row['time'],
