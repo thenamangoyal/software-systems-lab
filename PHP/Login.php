@@ -47,6 +47,12 @@
                     $response["created"] = $colCreated;
                     $response["name"] = $colName;
 
+                    $cat_stat = "SELECT * FROM usertype";
+                    $cat_res = mysqli_query($connect, $cat_stat);
+                    $response["usertypes"] = mysqli_num_rows($cat_res);
+
+
+
                 }
             }
         }
