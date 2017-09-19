@@ -12,7 +12,7 @@ https://github.com/namangl/eventsapp
 
 App Download
 ------------
-<a href="https://github.com/namangl/eventsapp">events.apk</a>
+<a href="events.apk">events.apk</a>
 
 
 Bug Reporting
