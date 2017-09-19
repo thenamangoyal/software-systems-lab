@@ -6,13 +6,13 @@ Aim
 ---
 To ease students' stay at IIT Ropar, and provide one click access to all relevant updates at the institute.
 
-App Repository
+App Source Repository
 --------------
-<a href="https://github.com/namangl/eventsapp">Repository</a>
+https://github.com/namangl/eventsapp
 
 App Download
 ------------
-<a href="https://github.com/namangl/eventsapp">App</a>
+<a href="https://github.com/namangl/eventsapp">events.apk</a>
 
 
 Bug Reporting
