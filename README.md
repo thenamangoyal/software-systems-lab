@@ -6,6 +6,10 @@ Aim
 ---
 To ease students' stay at IIT Ropar, and provide one click access to all relevant updates at the institute.
 
+App Repository
+--------------
+<a href="../eventsapp">Repository</a>
+
 App Download
 http://10.1.1.19/~2015csb1021/events.apk
 
