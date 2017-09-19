@@ -10,11 +10,13 @@ App Repository
 --------------
 <a href="https://github.com/namangl/eventsapp">Repository</a>
 
+App Download
+------------
+<a href="https://github.com/namangl/eventsapp">App</a>
+
+
 Bug Reporting
 -------------
 https://goo.gl/O4wpGg
-
-Website
-http://10.1.1.19/~2015csb1021/
 
 
