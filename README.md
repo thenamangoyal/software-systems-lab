@@ -8,12 +8,10 @@ To ease students' stay at IIT Ropar, and provide one click access to all relevan
 
 App Repository
 --------------
-<a href="../eventsapp">Repository</a>
-
-App Download
-http://10.1.1.19/~2015csb1021/events.apk
+<a href="https://github.com/namangl/eventsapp">Repository</a>
 
 Bug Reporting
+-------------
 https://goo.gl/O4wpGg
 
 Website
