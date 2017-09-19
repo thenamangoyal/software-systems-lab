@@ -1,6 +1,6 @@
 # CSP203: Software Systems Lab (Autumn 2017)
 
-Refer <a href="6. Project Report (25 April 2017)/Report.pdf">Report.pdf</a>
+For detailed user guide <a href="6. Project Report (25 April 2017)/Report.pdf">Report.pdf</a>
 
 Aim
 ---
