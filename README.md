@@ -7,7 +7,7 @@ User guide
 
 Aim
 ---
-To ease students' stay at IIT Ropar, and provide one click access to all relevant updates at the institute.
+To ease students' stay, and provide one click access to all relevant updates at the institute.
 
 App Source Repository
 ---------------------
@@ -18,7 +18,6 @@ App Download
 ------------
 <a href="events.apk">events.apk</a>
 
-
 Bug Reporting
 -------------
 https://goo.gl/O4wpGg
@@ -26,8 +25,8 @@ https://goo.gl/O4wpGg
 Further Work
 ------------
 
-*Implementing recommendation system.
-*Adding email notifications (for non-app users).
-*Add review mechanism. With option to add, moderate and read reviews.
-*Add past event grouping
+* Implementing recommendation system.
+* Adding email notifications (for non-app users).
+* Add review mechanism. With option to add, moderate and read reviews.
+* Add past event grouping
 
