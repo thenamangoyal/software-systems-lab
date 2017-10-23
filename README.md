@@ -1,6 +1,7 @@
 ## Software Systems Lab
 
-## User guide 
+User guide
+----------
 
 <a href="6. Project Report (25 April 2017)/Report.pdf">Report.pdf</a>
 
