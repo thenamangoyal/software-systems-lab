@@ -12,6 +12,10 @@ To ease students' stay, and provide one click access to all relevant updates at 
 | App Download | <a href="events.apk">events.apk</a> |
 | Bug Reporting | <a href="https://goo.gl/O4wpGg">Form for Bug Reporting</a> |
 
+Research Extension
+------------------
+<b>Collaborative filtering</b> - data based on user activity is collected and analytics provides prediction of interests new user based on choices of earlier users.
+
 Further Work
 ------------
 
