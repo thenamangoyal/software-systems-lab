@@ -1,4 +1,4 @@
-# CSP203: Software Systems Lab (Autumn 2017)
+## Software Systems Lab
 
 ## User guide 
 
@@ -22,4 +22,9 @@ Bug Reporting
 -------------
 https://goo.gl/O4wpGg
 
+Further Work
+------------
+
+*Implementing recommendation system.
+*Adding 
 
