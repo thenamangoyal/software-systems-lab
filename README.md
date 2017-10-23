@@ -27,5 +27,7 @@ Further Work
 ------------
 
 *Implementing recommendation system.
-*Adding 
+*Adding email notifications (for non-app users).
+*Add review mechanism. With option to add, moderate and read reviews.
+*Add past event grouping
 
